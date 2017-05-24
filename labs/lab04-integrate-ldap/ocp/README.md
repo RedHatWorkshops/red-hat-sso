@@ -68,4 +68,11 @@ sso-mysql-1-3tbj7        1/1       Running   0          1h
 [root@ocp-aio]# oc exec freeipa-server-1-dp1sv -- env | grep PASSWORD
 PASSWORD=5YqaAHLmgXHjWvUlXarmFN7yunhXOIRS
 ```
+
+Login with `username: admin` and `password: <the displayed password>`
+
+```
+firefox https://ipa.example.test
+```
+
 ## Import LDAP users into SSO
