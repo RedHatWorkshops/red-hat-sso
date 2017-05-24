@@ -106,3 +106,8 @@ Configure with the following Parameters
 Consult the below picture if you get stuck
 
 ![freeipa-ssoconfig](images/freeipa-ssoconfig.png)
+
+Now you can create a user and click on `Synchronize changed users` and you'll be able to see users on the `Users` section (left hand navigation side)
+
+![sso-sync-users](images/sso-sync-users.png)
+
