@@ -76,3 +76,34 @@ firefox https://ipa.example.test
 ```
 
 ## Import LDAP users into SSO
+
+Navigate and login into your `<ssourl>/admin/auth`; for example mine was `https://secure-sso-hackathon.apps.172.16.1.222.nip.io/admin/auth`. The login page should look like this
+
+![sso-login](images/sso-login.png)
+
+The default login is:
+
+```
+username: admin
+password: admin
+```
+
+Navigate to `User Federation ~> Add Provider` and select `ldap`
+
+Configure with the following Parameters
+
+* `Edit Mode: WRITABLE`
+* `Vendor: Red Hat Directory Server`
+* `Username LDAP attribute: uid`
+* `RDN LDAP attribute: uid`
+* `UUID LDAP attribute: uid`
+* `User Object Classes: person`
+* `Connection URL: ldap://freeipa-server` - Change this to your servicename or service IP Address
+* `Users DN: cn=users,cn=accounts,dc=example,dc=test` - If you want a specific OU, specify that OU (this gets ALL users)
+* `Users DN: cn=users,cn=accounts,dc=example,dc=test` - If you want a specific OU, specify that OU (this gets ALL users)
+* `Authentication Type: none` - Uses anonymous bind
+* `Search Scope: One Level`
+
+Consult the below picture if you get stuck
+
+![freeipa-ssoconfig](images/freeipa-ssoconfig.png)
