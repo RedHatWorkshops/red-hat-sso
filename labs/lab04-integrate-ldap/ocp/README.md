@@ -100,7 +100,6 @@ Configure with the following Parameters
 * `User Object Classes: person`
 * `Connection URL: ldap://freeipa-server` - Change this to your servicename or service IP Address
 * `Users DN: cn=users,cn=accounts,dc=example,dc=test` - If you want a specific OU, specify that OU (this gets ALL users)
-* `Users DN: cn=users,cn=accounts,dc=example,dc=test` - If you want a specific OU, specify that OU (this gets ALL users)
 * `Authentication Type: none` - Uses anonymous bind
 * `Search Scope: One Level`
 
