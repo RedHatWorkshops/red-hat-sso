@@ -28,3 +28,7 @@ oc adm policy add-scc-to-user anyuid -z useroot
 Next, create your ipa server with the following parameters
 
 ![freeipa-parameters](images/freeipa-parameters.png)
+
+In order for the deploymnet to kick off...edit the deployment config; and change the image to `adelton/freeipa-server:centos-7`
+
+![freeipa-image](images/freeipa-image.png)
