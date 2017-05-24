@@ -24,3 +24,7 @@ oc project hackathon
 oc create serviceaccount useroot 
 oc adm policy add-scc-to-user anyuid -z useroot
 ```
+
+Next, create your ipa server with the following parameters
+
+![freeipa-parameters](images/freeipa-parameters.png)
