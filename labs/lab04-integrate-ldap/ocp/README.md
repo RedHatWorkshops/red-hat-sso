@@ -216,3 +216,4 @@ Now you can create a user and click on `Synchronize changed users` and you'll be
 
 
 You should be able to see the user `homer` in the `Users` section
+

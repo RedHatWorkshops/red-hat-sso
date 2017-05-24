@@ -22,3 +22,4 @@ sudo oc login -u system:admin
 sudo oc create -n openshift -f jboss-image-streams.json
 sudo oc process -f sso70-mysql.json -v HTTPS_NAME=keystore -v HTTPS_PASSWORD=password1 | sudo oc create -n myproject -f -
 ```
+

@@ -21,3 +21,4 @@ These labs are for SSO on OpenShift
 * [Lab 3. SAML EAP Webapp](labs/lab03-saml-eap-webapp/ocp/README.md)
 * [Lab 4. Integrating with LDAP](labs/lab04-integrate-ldap/ocp/README.md)
 * [Lab 5. Identity Brokering](labs/lab05-identity-brokering/ocp/README.md)
+
