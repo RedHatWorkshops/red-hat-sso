@@ -2,7 +2,7 @@
 
 These labs are all based on the latest version of Red Hat SSO
 
-## Stand Alone Labs
+## Standalone Labs
 
 These labs are for Standalone Instances
 
