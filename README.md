@@ -12,7 +12,7 @@ These labs are for Standalone Instances
 * [Lab 4. Integrating with LDAP](labs/lab04-integrate-ldap/local-standalone/README.md)
 * [Lab 5. Identity Brokering](labs/lab05-identity-brokering/local-standalone/README.md)
 * [Lab 6. Spring Boot App](labs/lab06-spring-boot-app/local-standalone/README.md)
-* [Lab 7. JavaScript App](labs/lab06-javascript-app/local-standalone/README.md)
+* [Lab 7. JavaScript App](labs/lab07-javascript-app/local-standalone/README.md)
 
 ## OpenShift Labs
 
@@ -24,5 +24,5 @@ These labs are for SSO on OpenShift
 * [Lab 4. Integrating with LDAP](labs/lab04-integrate-ldap/ocp/README.md)
 * [Lab 5. Identity Brokering](labs/lab05-identity-brokering/ocp/README.md)
 * [Lab 6. Spring Boot App](labs/lab06-spring-boot-app/ocp/README.md)
-* [Lab 7. JavaScript App](labs/lab06-javascript-app/ocp/README.md)
+* [Lab 7. JavaScript App](labs/lab07-javascript-app/ocp/README.md)
 
