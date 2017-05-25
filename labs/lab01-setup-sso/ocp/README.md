@@ -14,6 +14,12 @@ Before you start; clone this repo
 git clone https://github.com/RedHatWorkshops/red-hat-sso
 ```
 
+Then cd into the directory with the lab materials
+
+```
+cd lab01-setup-sso/ocp
+```
+
 ## SSL Keystore
 
 This repository includes an already made SSL Keystore file as `keystore.jks`. You can use this or create your own with the following command.
