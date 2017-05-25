@@ -224,3 +224,25 @@ Now you can create a user and click on `Synchronize changed users` and you'll be
 
 You should be able to see the user `homer` in the `Users` section
 
+## Test Connection
+
+First, you need to create a new client on your SSO installation. On the left navigation click "Clients" then click "Create"
+
+![new-client](images/new-client.png)
+
+In the "Client ID" name it `myproject` and leave the "Client Protocol" as `openid-connect`. Click save.
+
+Now, use `curl` against your `<sso url>/auth/realms/master/protocol/openid-connect/token`. Keep in mind that the `client_id` should be the name of the client you created just now. In this example it's `myproject`. For `username` and `password`; use the creds you created in the LDAP server. In this example; we created the `homer` user.
+
+```
+curl -s  \
+--data "grant_type=password&client_id=myproject&username=homer&password=homer" \
+-k https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/realms/master/protocol/openid-connect/token | python -m json.tool
+```
+
+Provide a bad password to see what an error looks like
+```
+curl -s \
+--data "grant_type=password&client_id=myproject&username=homer&password=badpassword" \
+-k https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/realms/master/protocol/openid-connect/token | python -m json.tool
+```
