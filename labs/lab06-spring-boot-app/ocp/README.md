@@ -1,11 +1,11 @@
-app-springboot: SpringBoot Application
+SpringBoot Application
 ===================================================
 
-Level: Beginner
-Technologies: SpringBoot, Spring MVC, Spring Security
-Summary: SpringBoot, Spring MVC, Spring Security
-Target Product: Keycloak
-Source: <https://github.com/keycloak/Keycloak-quickstarts>
+* Level: Beginner
+* Technologies: SpringBoot, Spring MVC, Spring Security
+* Summary: SpringBoot, Spring MVC, Spring Security
+* Target Product: Keycloak
+* Source: <https://github.com/keycloak/Keycloak-quickstarts>
 
 
 What is it?
