@@ -187,7 +187,7 @@ Number of entries returned 1
 
 ## Import LDAP users into SSO
 
-Navigate and login into your `<ssourl>/admin/auth`; for example mine was `https://secure-sso-myproject.apps.172.16.1.222.nip.io/admin/auth`. The login page should look like this
+Navigate and login into your `<ssourl>/auth/admin`; for example mine was `https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/admin`. The login page should look like this
 
 ![sso-login](images/sso-login.png)
 
