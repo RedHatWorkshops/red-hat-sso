@@ -65,3 +65,32 @@ oc process -f sso70-mysql.json --param HTTPS_NAME=keystore --param HTTPS_PASSWOR
 
 Login to your OpenShift instance; you should see the following if successful.
 ![sso-ocp-install-success](images/sso-ocp-install-success.png)
+
+## Test 
+To get the SSO Admin Password from OpenShift Web Console:
+
+```
+Application --> Pods --> <name of the sso pod> --> Click Environment tab
+Then, look for value for SSO_ADMIN_USERNAME and SSO_ADMIN_PASSWORD
+```
+![sso-ocp-install-success](images/sso-ocp-admin-login.png)
+
+To access the SSO Console
+Go to OpenShift Web Console and look for the route of the secure-sso service
+Click onto the route 
+It will take you to the new tap with URL and add 'auth' to the context as follow:
+
+```
+https://secure-sso-sso.192.168.99.100.nip.io/auth
+```
+![sso-ocp-install-success](images/sso-ocp-sso-console.png)
+
+
+```
+Click 'Administration Console'
+
+Enter the SSO_ADMIN_USERNAME and SSO_ADMIN_PASSWORD and click login.
+```
+
+
+![sso-ocp-install-success](images/sso-ocp-sso-admin-console.png)
