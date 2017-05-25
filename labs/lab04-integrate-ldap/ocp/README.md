@@ -230,4 +230,33 @@ First, you need to create a new client on your SSO installation. On the left nav
 
 ![new-client](images/new-client.png)
 
-In the "Client ID" name it `myproject` and leave the "Client Protocol" as `openid-connect`
+In the "Client ID" name it `myproject` and leave the "Client Protocol" as `openid-connect`. Click save.
+
+Now, use `curl` against your `<sso url>/auth/realms/master/protocol/openid-connect/token`. Keep in mind that the `client_id` should be the name of the client you created just now. In this example it's `myproject`. For `username` and `password`; use the creds you created in the LDAP server. In this example; we created the `homer` user.
+
+```
+curl -s  \
+--data "grant_type=password&client_id=myproject&username=homer&password=homer" \
+-k https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/realms/master/protocol/openid-connect/token | python -m json.tool
+{
+    "access_token": "eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIzMmVjYzNiOS0zOWZiLTRiZTMtYWE0OC1mZWZhMWIwMDU3YmEiLCJleHAiOjE0OTU3MzQ3MzQsIm5iZiI6MCwiaWF0IjoxNDk1NzM0Njc0LCJpc3MiOiJodHRwczovL3NlY3VyZS1zc28tbXlwcm9qZWN0LmFwcHMuMTcyLjE2LjEuMjIyLm5pcC5pby9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJteXByb2plY3QiLCJzdWIiOiJmOGM4YjkyYS0zZWVjLTQ5ZDMtYmU3MC1jNDA0MTNkNTY2MDIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJteXByb2plY3QiLCJzZXNzaW9uX3N0YXRlIjoiYTFiNzkxYTEtYzFhNC00YTAxLThkMDctNDMzODI5NjFiNjYxIiwiY2xpZW50X3Nlc3Npb24iOiI5MmMyNzI5Yy0yNzA5LTRlNmYtOThlZS0yZTQ4YmEwMTdjYzIiLCJhbGxvd2VkLW9yaWdpbnMiOltdLCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsInZpZXctcHJvZmlsZSJdfX0sIm5hbWUiOiJIb21lciBTaW1wc29uIFNpbXBzb24iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJob21lciIsImdpdmVuX25hbWUiOiJIb21lciBTaW1wc29uIiwiZmFtaWx5X25hbWUiOiJTaW1wc29uIn0.Ch2MJdVp8_2OdP1GOF6NKvQUYUzXa6HZzBel9x8g-SebmjlMNkp-4ryYHrHSeGkNNqtds9e_whf4ISS4Zs1kfskGm5qqiM1EojpLEdt2KBRAvy6c16unf8qBLiJtMqvQZjJYTio4OJoDuCOHDn1-DyE3GbYaGqXrBioPAkjObYRtJrZM-LqDRAUsRWklh9KJ56wrgcqgbUKiScQh1w3gJNZ093vySiFRUBzWJAgmYaZqGEFt1LVcWvGCXMVfCUUKYV2X_kky2v-Ubl3x6c8UOD4wgGL8tluzJ21pnzMfqeONT9uEdI9NHpJ0shuAVXM_e5Q51PAAlxxSH3FDqwnYWw",
+    "expires_in": 60,
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJiNmM3OGI5Zi01OWM0LTQ1MjktYmE1OS1mNzU3ZjQxOTYzMTgiLCJleHAiOjE0OTU3MzQ3MzQsIm5iZiI6MCwiaWF0IjoxNDk1NzM0Njc0LCJpc3MiOiJodHRwczovL3NlY3VyZS1zc28tbXlwcm9qZWN0LmFwcHMuMTcyLjE2LjEuMjIyLm5pcC5pby9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJteXByb2plY3QiLCJzdWIiOiJmOGM4YjkyYS0zZWVjLTQ5ZDMtYmU3MC1jNDA0MTNkNTY2MDIiLCJ0eXAiOiJJRCIsImF6cCI6Im15cHJvamVjdCIsInNlc3Npb25fc3RhdGUiOiJhMWI3OTFhMS1jMWE0LTRhMDEtOGQwNy00MzM4Mjk2MWI2NjEiLCJuYW1lIjoiSG9tZXIgU2ltcHNvbiBTaW1wc29uIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiaG9tZXIiLCJnaXZlbl9uYW1lIjoiSG9tZXIgU2ltcHNvbiIsImZhbWlseV9uYW1lIjoiU2ltcHNvbiJ9.MQP2lBgg1dGdLJDN5djYHXNYhQV2duZzzbGcFgcdYpm9zMbWRWKPFkRMdrP9ZDlREnVpyIZchmxtvsitXNbKVv_p8ExhBfwGrc9KJF_mFq494784aj2W_h-qwiqMxMwCZMFAMkAY5vr7CFJU-VEbCMCN8MaXic9N-zDyj454dZLPGFk1rdvdtz81W4qEahlteCTdaVF-yxnJ0Dpwp2a-XUyNkZCNMdBTxB0f1Y8uLveqip-sW7VwFxa0hgXlTJi9YFeqD2bWbue7vchPZr4n-HBlbbVrBXJfa8KDcIGLridAO1K7iAwqyKnqjorHuI1dn0kGXdAV_lTJWhhyTzBT2w",
+    "not-before-policy": 0,
+    "refresh_expires_in": 1800,
+    "refresh_token": "eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI5NzE0OTBhZC0wOTU1LTQ1MzYtODY3ZS04M2FjMzIwNjhkZmEiLCJleHAiOjE0OTU3MzY0NzQsIm5iZiI6MCwiaWF0IjoxNDk1NzM0Njc0LCJpc3MiOiJodHRwczovL3NlY3VyZS1zc28tbXlwcm9qZWN0LmFwcHMuMTcyLjE2LjEuMjIyLm5pcC5pby9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJteXByb2plY3QiLCJzdWIiOiJmOGM4YjkyYS0zZWVjLTQ5ZDMtYmU3MC1jNDA0MTNkNTY2MDIiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoibXlwcm9qZWN0Iiwic2Vzc2lvbl9zdGF0ZSI6ImExYjc5MWExLWMxYTQtNGEwMS04ZDA3LTQzMzgyOTYxYjY2MSIsImNsaWVudF9zZXNzaW9uIjoiOTJjMjcyOWMtMjcwOS00ZTZmLTk4ZWUtMmU0OGJhMDE3Y2MyIiwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJ2aWV3LXByb2ZpbGUiXX19fQ.NNlYkgiBYF0F7D_WvWMmyGctBH-D_yXZz5HtF8Eg5efUzxfuP1UqdZurpRKKr69f9P6VRJxaQEctMrPw_gHUvlA0_OiWtksGSoKy1NiG9xipQ6ZVWwKa6sXXOcaPC8Kbg45U2GGh1Cajd65BDzzhiA-HnH8ko-KR5AP7hqQy2DPKemqO8oDMhxQy3ICAXWDLQuG9WG0_CWKK2ExFB79P8oyQKtnqiQNwHj2Ai9U5du_ckWEKU458KmcYrlJ6iaOlPdmOH4lOa-WMD2s0cXq5qM7al_gr2Yd-A73zS6gGbyvnh78gFFQldbuA6d1tr0B0BJg-RqR-VbFkeOQMZe7YVQ",
+    "session_state": "a1b791a1-c1a4-4a01-8d07-43382961b661",
+    "token_type": "bearer"
+}
+```
+
+Provide a bad password to see what an error looks like
+```
+curl -s \
+--data "grant_type=password&client_id=myproject&username=homer&password=badpassword" \
+-k https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/realms/master/protocol/openid-connect/token | python -m json.tool
+{
+    "error": "invalid_grant",
+    "error_description": "Invalid user credentials"
+}
+```
