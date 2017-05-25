@@ -33,10 +33,11 @@ Create Service Account
 ```
 oc project myproject
 oc create serviceaccount useroot 
+oc login -u system:admin
 oc adm policy add-scc-to-user anyuid -z useroot
 ```
 
-Next, login to your webconsole and create your ipa server with the following parameters, in the `myproject` project. The defaults should be fine.
+Next, login to your web console as 'developer' and create your ipa server with the following parameters, in the `myproject` project. The defaults should be fine.
 
 ![freeipa-parameters](images/freeipa-parameters.png)
 
