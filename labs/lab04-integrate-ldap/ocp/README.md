@@ -1,41 +1,48 @@
 # Integrate LDAP
 
-You can Federate backend authentication systems into SSO to manage users centrally
+You can Federate backend authentication systems into SSO to manage users centrally. In this lab we will spin up a [FreeIPA](http://www.freeipa.org/page/Main_Page) server that provides LDAP functionality.
+
+NOTE: This works with `oc cluster up` or environments with dymanic storage.
 
 ## Install SSO
 
-Follow the guide [here](https://github.com/RedHatWorkshops/red-hat-sso/blob/master/labs/lab01-setup-sso/ocp/README.md)
+If you haven't done so already, please do [Lab 01](https://github.com/RedHatWorkshops/red-hat-sso/blob/master/labs/lab01-setup-sso/ocp/README.md) of the OpenShift track to get an SSO system up and running.
 
 ## Install FreeIPA  Template
 
-Import the community version of FreeIPA template into openshift
+Import the community version of FreeIPA template into OpenShift to test on if you don't have an LDAP server handy.
 
 ```
+oc login -u system:admin
 oc create -f https://raw.githubusercontent.com/freeipa/freeipa-container/master/freeipa-server-openshift.json -n openshift
 ```
 
+Next, import the image as the developer user
+
+```
+oc login -u developer
+oc import-image freeipa-server:latest --from=adelton/freeipa-server:centos-7 --confirm
+```
 
 ## Deploy FreeIPA
 
-NOTE: This works with `oc cluster up` or environments with dymanic storage.
+Now that you have the template and image imported; install FreeIPA on OpenShift.
 
 Create Service Account
 
 ```
-oc project hackathon
+oc project myproject
 oc create serviceaccount useroot 
 oc adm policy add-scc-to-user anyuid -z useroot
 ```
 
-Next, create your ipa server with the following parameters
+Next, login to your webconsole and create your ipa server with the following parameters, in the `myproject` project. The defaults should be fine.
 
 ![freeipa-parameters](images/freeipa-parameters.png)
 
-In order for the deploymnet to kick off...edit the deployment config; and change the image to `adelton/freeipa-server:centos-7`
+Once you are sure of the parameters; click "Create"
 
-![freeipa-image](images/freeipa-image.png)
-
-OPTIONAL: If you look at the deployment logs and see the following
+FreeIPA generates certificates/keys for itself so you might need to generate some activity on your system, if you look at the deployment logs and see the following
 
 ```
 Configuring Kerberos KDC (krb5kdc). Estimated time: 30 seconds
@@ -45,12 +52,12 @@ Configuring Kerberos KDC (krb5kdc). Estimated time: 30 seconds
 WARNING: Your system is running out of entropy, you may experience long delays
 ```
 
-It means that your system isn't creating enough random data; run this to speed it along (run ^c after a minute or two)
+Just run this to speed it along (run ^c after a minute or two)
 ```
 while true; do find /; done 
 ```
 
-Add the router's IP address in your `/etc/hosts` file in order to access the fake domain you created
+Add the router's IP address in your `/etc/hosts` file (HINT: it's the IP address of where you ran `oc cluster up`) in order to access the fake domain you created
 
 ```
 172.16.1.222	ipa.example.test
@@ -79,7 +86,7 @@ firefox https://ipa.example.test
 Fastest way is with `oc rsh`; so find out your pod name.
 
 ```
-[root@ocp-aio hackathon]# oc get pods
+[root@ocp-aio ]# oc get pods
 NAME                     READY     STATUS    RESTARTS   AGE
 freeipa-server-1-dp1sv   1/1       Running   0          2h
 sso-1-sp5ws              1/1       Running   0          3h
@@ -89,7 +96,7 @@ sso-mysql-1-3tbj7        1/1       Running   0          3h
 Now `oc rsh` into this pod
 
 ```
-[root@ocp-aio hackathon]# oc rsh freeipa-server-1-dp1sv
+[root@ocp-aio ]# oc rsh freeipa-server-1-dp1sv
 sh-4.2#
 ```
 
@@ -180,7 +187,7 @@ Number of entries returned 1
 
 ## Import LDAP users into SSO
 
-Navigate and login into your `<ssourl>/admin/auth`; for example mine was `https://secure-sso-hackathon.apps.172.16.1.222.nip.io/admin/auth`. The login page should look like this
+Navigate and login into your `<ssourl>/auth/admin`; for example mine was `https://secure-sso-myproject.apps.172.16.1.222.nip.io/auth/admin`. The login page should look like this
 
 ![sso-login](images/sso-login.png)
 
