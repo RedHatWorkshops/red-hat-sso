@@ -8,13 +8,19 @@ oc cluster up --image=registry.access.redhat.com/openshift3/ose --version=v3.5
 
 This assumes that you have a Mac/Windows/Linux machine with `docker` running.
 
+Note that if using something other than 'oc cluster up' create a new project named myproject if it does not already exist.
+
+```
+oc new-project myproject
+```
+
 Before you start; clone this repo
 
 ```
 git clone https://github.com/RedHatWorkshops/red-hat-sso
 ```
 
-Then cd into the directory with the lab materials
+Then cd into the directory with the lab01 ocp materials
 
 ```
 cd lab01-setup-sso/ocp
