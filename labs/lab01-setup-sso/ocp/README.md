@@ -8,7 +8,7 @@ oc cluster up --image=registry.access.redhat.com/openshift3/ose --version=v3.5
 
 This assumes that you have a Mac/Windows/Linux machine with `docker` running.
 
-Note that if using something other than `oc cluster up` create a new project named myproject if it does not already exist.
+Note that if using something other than `oc cluster up` create a new project named `myproject` if it does not already exist.
 
 ```
 oc new-project myproject
