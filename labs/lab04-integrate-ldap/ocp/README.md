@@ -224,3 +224,10 @@ Now you can create a user and click on `Synchronize changed users` and you'll be
 
 You should be able to see the user `homer` in the `Users` section
 
+## Test Connection
+
+First, you need to create a new client on your SSO installation. On the left navigation click "Clients" then click "Create"
+
+![new-client](images/new-client.png)
+
+In the "Client ID" name it `myproject` and leave the "Client Protocol" as `openid-connect`
