@@ -25,3 +25,4 @@ These labs are for SSO on OpenShift
 * [Lab 5. Identity Brokering](labs/lab05-identity-brokering/ocp/README.md)
 * [Lab 6. Spring Boot App](labs/lab06-spring-boot-app/ocp/README.md)
 * [Lab 7. JavaScript App](labs/lab06-javascript-app/ocp/README.md)
+
