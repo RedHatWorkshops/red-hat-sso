@@ -23,7 +23,7 @@ git clone https://github.com/RedHatWorkshops/red-hat-sso
 Then cd into the directory with the lab01 ocp materials
 
 ```
-cd lab01-setup-sso/ocp
+cd red-hat-sso/labs/lab01-setup-sso/ocp
 ```
 
 ## SSL Keystore
